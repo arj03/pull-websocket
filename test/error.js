@@ -46,10 +46,3 @@ test('close', function (t) {
   server.close()
   t.end()
 })
-
-
-
-
-
-
-
