@@ -1,15 +1,13 @@
-# pull-ws
+# pull-websocket
+
+This is a friendly fork of pull-ws as it seems to be [unmaintained](https://github.com/pull-stream/pull-ws/pull/26).
 
 Use websockets via pull-stream interface. both client and server.
 
-[![NPM](https://nodei.co/npm/pull-ws.png)](https://nodei.co/npm/pull-ws/)
-
-[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/dominictarr/stability#unstable) [![Build Status](https://img.shields.io/travis/DamonOehlman/pull-ws.svg?branch=master)](https://travis-ci.org/DamonOehlman/pull-ws) 
-
 ## example - client
 ``` js
-var connect = require('pull-ws/client')
-// OR: require('pull-ws').connect
+var connect = require('pull-websocket/client')
+// OR: require('pull-websocket').connect
 
 connect(WS_URL, function (err, stream) {
   if(err) throw err //handle err
@@ -20,7 +18,7 @@ connect(WS_URL, function (err, stream) {
 ## example - server
 
 ``` js
-var createServer = require('pull-ws/server')
+var createServer = require('pull-websocket/server')
 createServer(function (stream) {
   //pipe the stream somewhere.
   //eg, echo server
@@ -30,7 +28,7 @@ createServer(function (stream) {
 
 ## api
 
-### `connect = require('pull-ws/client')`
+### `connect = require('pull-websocket/client')`
 
 `connect(url, cb | {binary: boolean, onConnect: cb})`
 
@@ -48,7 +46,7 @@ connect(url, function (err, stream) {
 ```
 
 
-### `createServer = require('pull-ws/server')`
+### `createServer = require('pull-websocket/server')`
 
 create pull stream websocket servers.
 the servers take a lot more options than clients.
@@ -65,7 +63,7 @@ the servers take a lot more options than clients.
 one duplex service you may want to use this with is [muxrpc](https://github.com/dominictarr/muxrpc)
 
 ``` js
-var ws = require('pull-ws')
+var ws = require('pull-websocket')
 var pull = require('pull-stream')
 
 ws.createServer(function (stream) {
@@ -132,7 +130,7 @@ these modules are used internally, to wrap a websocket.
 you probably won't need to touch these,
 but they are documented anyway.
 
-### `require('pull-ws/duplex')(socket, opts?)`
+### `require('pull-websocket/duplex')(socket, opts?)`
 
 turn a websocket into a duplex pull stream.
 If provided, `opts` is passed to `pws.sink(socket, opts)`.
@@ -150,9 +148,9 @@ The duplex stream will also contain a copy of the properties from
 the http request that became the websocket. they are `method`, `url`,
 `headers` and `upgrade`.
 
-also exposed at: `var duplex = require('pull-ws')`
+also exposed at: `var duplex = require('pull-websocket')`
 
-### `require('pull-ws/sink')(socket, opts?)`
+### `require('pull-websocket/sink')(socket, opts?)`
 
 Create a pull-stream `Sink` that will write data to the `socket`.
 `opts` may be `{closeOnEnd: true, onClose: onClose}`.
@@ -164,7 +162,7 @@ If `opts` is a function, then `onClose = opts; opts.closeOnEnd = true`.
 
 ```js
 var pull = require('pull-stream');
-var wsSink = require('pull-ws');
+var wsSink = require('pull-websocket');
 
 // connect to the echo endpoint for test/server.js
 var socket = new WebSocket('wss://echo.websocket.org');
@@ -189,9 +187,9 @@ socket.addEventListener('message', function(evt) {
 
 ```
 
-also exposed at `require('pull-ws').sink`
+also exposed at `require('pull-websocket').sink`
 
-### `require('pull-ws/source')(socket)`
+### `require('pull-websocket/source')(socket)`
 
 Create a pull-stream `Source` that will read data from the `socket`.
 
@@ -199,7 +197,7 @@ Create a pull-stream `Source` that will read data from the `socket`.
 var pull = require('pull-stream');
 
 // we just need the source, so cherrypick
-var wsSource = require('pull-ws/source');
+var wsSource = require('pull-websocket/source');
 
 pull(
   // connect to the test/server.js endpoint
@@ -209,7 +207,7 @@ pull(
 
 ```
 
-also exposed at `require('pull-ws').source`
+also exposed at `require('pull-websocket').source`
 
 # LICENSE
 

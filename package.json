@@ -1,6 +1,6 @@
 {
-  "name": "pull-ws",
-  "version": "3.3.2",
+  "name": "pull-websocket",
+  "version": "3.4.0",
   "description": "Simple pull-streams for websocket client connections",
   "main": "index.js",
   "stability": "unstable",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/DamonOehlman/pull-ws.git"
+    "url": "https://github.com/arj03/pull-websocket/"
   },
   "keywords": [
     "pull-stream",
@@ -20,9 +20,9 @@
   "author": "Damon Oehlman <damon.oehlman@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DamonOehlman/pull-ws/issues"
+    "url": "https://github.com/arj03/pull-websocket/issues"
   },
-  "homepage": "https://github.com/DamonOehlman/pull-ws",
+  "homepage": "https://github.com/arj03/pull-websocket/",
   "dependencies": {
     "relative-url": "^1.0.2",
     "safe-buffer": "^5.1.1",
