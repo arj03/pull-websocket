@@ -1,6 +1,5 @@
 var test = require('tape');
 var WebSocket = require('ws');
-var endpoint = require('./helpers/wsurl') + '/read';
 var pull = require('pull-stream');
 var ws = require('../');
 
@@ -28,7 +27,6 @@ test('test error', function (t) {
       _err = err
     })
   )
-
 })
 
 //connect to a server that does not exist, and check that it errors.
@@ -43,7 +41,6 @@ test('test error', function (t) {
     }})
 
 })
-
 
 test('close', function (t) {
   server.close()
