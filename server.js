@@ -55,6 +55,22 @@ module.exports = !WebSocket.Server ? null : function (opts, onConnection) {
     emitter.close = function (onClose) {
       server.close(onClose)
       wsServer.close()
+
+      // soft close
+      wsServer.clients.forEach((socket) => {
+        socket.close()
+      })
+
+      setTimeout(() => {
+        // Second sweep, hard close
+        // for everyone who's left
+        wsServer.clients.forEach((socket) => {
+          if ([socket.OPEN, socket.CLOSING].includes(socket.readyState)) {
+            socket.terminate()
+          }
+        })
+      }, 1000)
+
       return emitter
     }
 
