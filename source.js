@@ -7,7 +7,7 @@
   <<< examples/read.js
 
 **/
-var Buffer = require('safe-buffer').Buffer;
+var toBuffer = require('typedarray-to-buffer')
 
 // copied from github.com/feross/buffer
 // Some ArrayBuffers are not passing the instanceof check, so we need to do a bit more work :(
@@ -24,13 +24,11 @@ module.exports = function(socket, cb) {
   var started = false;
   socket.addEventListener('message', function(evt) {
     var data = evt.data;
-    if (isArrayBuffer(data)) {
-      data = Buffer.from(data);
-    }
+    if (isArrayBuffer(data))
+      data = toBuffer(data)
 
-    if (receiver) {
+    if (receiver)
       return receiver(null, data);
-    }
 
     buffer.push(data);
   });
